@@ -2,7 +2,7 @@
 
 Live scores, group standings, and match schedule for the 2026 FIFA World Cup.
 
-# Architecture
+## Architecture
 
 ```
 worldcup26.ir API → Next.js Server Components → Vercel Edge Network → User
