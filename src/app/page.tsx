@@ -4,7 +4,7 @@ import { MatchCard } from "@/components/MatchCard";
 
 export default async function Home() {
   const [matches, teamsRaw] = await Promise.all([getMatches(), getTeams()]);
-  const teams: Team[] = Array.isArray(teamsRaw) ? teamsRaw : (teamsRaw as any)?.teams ?? [];
+  const teams: Team[] = Array.isArray(teamsRaw) ? teamsRaw : (teamsRaw as { teams: Team[] })?.teams ?? [];
   const teamMap = new Map(teams.map((t) => [t.id, t] as const));
 
   const liveMatches = matches.filter(
