@@ -31,14 +31,16 @@ export function GroupTable({
             >
               <div className="min-w-0 flex-1 pr-3">
                 <div
-                  className="flex w-full items-center gap-2 truncate rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_4px_12px_rgba(0,0,0,0.35)]"
+                  className="flex w-full items-center gap-2 truncate rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)] md:py-3"
                   title={team?.name_en}
                 >
                   {team?.flag ? (
-                    <img
+                    <Image
                       src={team.flag}
                       alt={team?.name_en || "Team flag"}
                       className="h-6 w-10 flex-shrink-0 rounded border border-white/15 object-cover"
+                      width={40}
+                      height={24}
                     />
                   ) : (
                     <div className="h-6 w-10 flex-shrink-0 rounded border border-white/15 bg-gray-700" />
