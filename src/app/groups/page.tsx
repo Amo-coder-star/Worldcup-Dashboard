@@ -5,8 +5,8 @@ import type { Group, Team } from "@/lib/api";
 export default async function GroupsPage() {
   const [groupsRaw, teamsRaw] = await Promise.all([getGroups(), getTeams()]);
 
-  const groups: Group[] = Array.isArray(groupsRaw) ? groupsRaw : (groupsRaw as any)?.groups ?? [];
-  const teams: Team[] = Array.isArray(teamsRaw) ? teamsRaw : (teamsRaw as any)?.teams ?? [];
+  const groups: Group[] = Array.isArray(groupsRaw) ? groupsRaw : (groupsRaw as { groups: Group[] })?.groups ?? [];
+  const teams: Team[] = Array.isArray(teamsRaw) ? teamsRaw : (teamsRaw as { teams: Team[] })?.teams ?? [];
 
   return (
     <main className="min-h-screen bg-gray-950 text-white p-6">
