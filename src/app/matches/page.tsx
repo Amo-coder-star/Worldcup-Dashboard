@@ -1,12 +1,11 @@
 import { getMatches, getTeams } from "@/lib/api";
+import { extractTeams } from "@/lib/typeGuards";
 import type { Team } from "@/lib/api";
 import { MatchCard } from "@/components/MatchCard";
 
 export default async function MatchesPage() {
   const [matches, teamsRaw] = await Promise.all([getMatches(), getTeams()]);
-  const teams: Team[] = Array.isArray(teamsRaw)
-    ? teamsRaw
-    : (teamsRaw as { teams: Team[] })?.teams ?? [];
+  const teams: Team[] = extractTeams(teamsRaw);
   const teamMap = new Map(teams.map((t) => [t.id, t] as const));
 
   return (

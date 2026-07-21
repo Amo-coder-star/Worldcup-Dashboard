@@ -1,12 +1,13 @@
 import { getGroups, getTeams } from "@/lib/api";
 import { GroupTable } from "@/components/GroupTable";
+import { extractGroups, extractTeams } from "@/lib/typeGuards";
 import type { Group, Team } from "@/lib/api";
 
 export default async function GroupsPage() {
   const [groupsRaw, teamsRaw] = await Promise.all([getGroups(), getTeams()]);
 
-  const groups: Group[] = Array.isArray(groupsRaw) ? groupsRaw : (groupsRaw as { groups: Group[] })?.groups ?? [];
-  const teams: Team[] = Array.isArray(teamsRaw) ? teamsRaw : (teamsRaw as { teams: Team[] })?.teams ?? [];
+  const groups: Group[] = extractGroups(groupsRaw);
+  const teams: Team[] = extractTeams(teamsRaw);
 
   return (
     <main className="min-h-screen bg-gray-950 text-white p-6">
