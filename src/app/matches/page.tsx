@@ -6,7 +6,7 @@ export default async function MatchesPage() {
   const [matches, teamsRaw] = await Promise.all([getMatches(), getTeams()]);
   const teams: Team[] = Array.isArray(teamsRaw)
     ? teamsRaw
-    : (teamsRaw as any)?.teams ?? [];
+    : (teamsRaw as { teams: Team[] })?.teams ?? [];
   const teamMap = new Map(teams.map((t) => [t.id, t] as const));
 
   return (
